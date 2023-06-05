@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  libreddit:
+    image: libreddit/libreddit:latest
+    restart: always
+    container_name: "libreddit"
+    user: nobody
+    read_only: true
+    ports:
+      - 127.0.0.1:8083:8080
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - libreddit
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "--tries=1", "http://localhost:8080/settings"]
+      interval: 5m
+      timeout: 3s
+    environment:
+      - FRONT_PAGE=popular
+      - COMMENT_SORT=new
+      - BLUR_NSFW=on
+      - USE_HLS=on
+      - AUTOPLAY_VIDEOS=off
+
+networks:
+  libreddit:

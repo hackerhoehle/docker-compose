@@ -1,0 +1,11 @@
+debug = false
+source_code = "https://github.com/realaravinth/libmedium"
+#cache = "/var/lib/libmedium"
+
+[server]
+port = 7000
+ip = "0.0.0.0" 
+domain = "libmedium.xn--hackerhhle-kcb.org"
+allow_registration = false
+proxy_has_tls = true
+workers = 4
